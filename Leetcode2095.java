@@ -27,8 +27,6 @@ class Solution {
 
         if(prev != null){
             prev.next = slow.next;
-        }else{
-            head = head.next;
         }
 
         return head;
