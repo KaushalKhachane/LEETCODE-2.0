@@ -5,4 +5,4 @@ public class Solution {
         }
         return Math.max(Math.abs(sx - fx), Math.abs(sy - fy)) <= t;
     }
-}   
+}    
