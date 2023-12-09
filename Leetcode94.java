@@ -13,6 +13,8 @@
  *     }
  * }
  */
+
+ //PTOD
 class Solution {
     void traversal(TreeNode root, ArrayList<Integer> res){
         if(root == null){
