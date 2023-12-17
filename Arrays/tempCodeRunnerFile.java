@@ -1,66 +1,50 @@
-import java.util.*;
+    public class MaxCircularSubArray {
 
-public class RearrangeArray {
-    public static void main(String[] args) {
-        // Array Initialization
-        int n = 6;
-        ArrayList<Integer> A = new ArrayList<>(Arrays.asList(1, 2, -4, -5, 3, 4));
+        public static int Kadans(int arr[], int size) {
+            int maxSum = arr[0];
+            int currentSum = 0;
 
-        ArrayList<Integer> ans = RearrangebySign(A, n);
+            if (size == 0) {
+                return 0;
+            }
+            if (size == 1) {
+                return arr[0];
+            }
 
-        for (int i = 0; i < ans.size(); i++) {
-            System.out.print(ans.get(i) + " ");
+            for (int i = 1; i < size; i++) {
+                currentSum += arr[i];
+
+                if (currentSum > maxSum) {
+                    maxSum = currentSum;
+                }
+                if (currentSum < 0) {
+                    currentSum = 0;
+                }
+
+                maxSum = Math.max(currentSum, maxSum);
+                // System.out.print(maxSum+ " ");
+            }
+            return maxSum;
+        }
+
+        public static void main(String[] args) {
+            // int arr[] = { 2, 4, 7, 11, 14, 16, 20, 21 };
+            int arr[] = { 4, -4, 6, -6, 10, -11, 12 };
+
+            int nonWrapSum = Kadans(arr, arr.length);
+            System.out.println("non wrap sum:"+nonWrapSum);
+
+            int totalSum = 0;
+            for (int i = 0; i < arr.length; i++) {
+                totalSum += arr[i];
+                arr[i] = -arr[i];
+                System.out.println(arr[i]); // 11
+            }
+            System.out.println("Total sum: " + totalSum);
+
+            int wrapSum = totalSum + Kadans(arr, arr.length);
+            System.out.println("reverse kadans: "+Kadans(arr, arr.length));
+            System.out.println("wrap sum:"+wrapSum);
+            System.out.println(Math.max(nonWrapSum, wrapSum));
         }
     }
-
-    public static ArrayList<Integer> RearrangebySign(ArrayList<Integer> A, int n) {
-        // Define 2 ArrayLists, one for storing positive 
-        // and other for negative elements of the array.
-        ArrayList<Integer> pos = new ArrayList<>();
-        ArrayList<Integer> neg = new ArrayList<>();
-
-        // Segregate the array into positives and negatives.
-        for (int i = 0; i < n; i++) {
-            if (A.get(i) > 0)
-                pos.add(A.get(i));
-            else
-                neg.add(A.get(i));
-        }
-
-        // If positives are lesser than the negatives.
-        if (pos.size() < neg.size()) {
-
-            // First, fill array alternatively till the point 
-            // where positives and negatives are equal in number.
-            for (int i = 0; i < pos.size(); i++) {
-                A.set(2 * i, pos.get(i));
-                A.set(2 * i + 1, neg.get(i));
-            }
-
-            // Fill the remaining negatives at the end of the array.
-            int index = pos.size() * 2;
-            for (int i = pos.size(); i < neg.size(); i++) {
-                A.set(index, neg.get(i));
-                index++;
-            }
-        }
-
-        // If negatives are lesser than the positives.
-        else {
-            // First, fill array alternatively till the point 
-            // where positives and negatives are equal in number.
-            for (int i = 0; i < neg.size(); i++) {
-                A.set(2 * i, pos.get(i));
-                A.set(2 * i + 1, neg.get(i));
-            }
-
-            // Fill the remaining positives at the end of the array.
-            int index = neg.size() * 2;
-            for (int i = neg.size(); i < pos.size(); i++) {
-                A.set(index, pos.get(i));
-                index++;
-            }
-        }
-        return A;
-    }
-}
