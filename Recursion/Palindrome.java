@@ -10,13 +10,15 @@ public class Palindrome {
 
     static boolean isPalindrome(int n){
         System.out.println("N: "+n);
-        System.out.println("Reverse of N: "+ reverseNumber(n));
-        if(n == reverseNumber(n)){
+        int n2 = reverseNumber(n);
+        System.out.println("N2: "+ n2);
+
+        if(n == n2){
             return true;
         }
         return false;
     }
     public static void main(String[] args) {
-        System.out.println(isPalindrome(121));
+        System.out.println(isPalindrome(12241));
     }
 }
