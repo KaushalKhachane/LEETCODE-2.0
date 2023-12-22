@@ -39,20 +39,20 @@ public class SubString {
     }
 
     public static void main(String[] args) {
-        // String str = "abc";
-        // ArrayList<String> res = new ArrayList<String>();
-        // System.out.println(printSub("", str));
-        // System.out.println(res);
+        String str = "abc";
+        ArrayList<String> res = new ArrayList<String>();
+        System.out.println(printSub("", str));
+        System.out.println(res);
 
         // ----------------------------------------------------------------
 
-        String str = "abc";
-        ArrayList<String> res = new ArrayList<>();
+        // String str = "abc";
+        // ArrayList<String> res = new ArrayList<>();
 
-        // Call the method with the initial empty string and the shared ArrayList
-        printSub2("", str, res);
+        // // Call the method with the initial empty string and the shared ArrayList
+        // printSub2("", str, res);
 
-        // Print the final result
-        System.out.println(res);
+        // // Print the final result
+        // System.out.println(res);
     }
 }
