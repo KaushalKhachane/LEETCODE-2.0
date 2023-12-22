@@ -11,7 +11,9 @@ public class ArraySubset {
             int n = outer.size();
             for(int i = 0; i < n; i++){
                 List<Integer> internal = new ArrayList<>(outer.get(i));
+                System.out.println("after outer "+internal);
                 internal.add(num);
+                System.out.println("after add no."+internal);
                 outer.add(internal);
             }
         }
