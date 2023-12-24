@@ -1,0 +1,7 @@
+1. Try to represent the problme in term of recursion if it is array then alredy index if another problem still try to represent it in terms of index
+
+2. Due all possible stuff on that index according to the problem start count.
+
+3. sum of all this stuff --> count ways
+   min[of all stuff] --> final min
+   max[of all stuff] --> final max
