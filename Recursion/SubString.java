@@ -13,7 +13,7 @@ public class SubString {
         ArrayList<String> right = new ArrayList<>();
 
         left.addAll(printSub(p+c, up.substring(1)));
-        
+         
         right.addAll(printSub(p, up.substring(1)));
         
         left.addAll(right);
@@ -49,10 +49,10 @@ public class SubString {
         // String str = "abc";
         // ArrayList<String> res = new ArrayList<>();
 
-        // // Call the method with the initial empty string and the shared ArrayList
+        // Call the method with the initial empty string and the shared ArrayList
         // printSub2("", str, res);
 
-        // // Print the final result
+        // Print the final result
         // System.out.println(res);
     }
 }

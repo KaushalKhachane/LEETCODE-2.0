@@ -1,0 +1,3 @@
+SubSequence --> may or may not be continuous but it has to follow the order of the array
+like if array is [3,2,1]
+then 3 should come before 2 and 2 should be come before 1
