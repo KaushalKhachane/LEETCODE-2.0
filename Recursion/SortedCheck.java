@@ -1,6 +1,5 @@
 public class SortedCheck {
     static boolean check(int arr[]){
-        int n = arr.length;
         return helper(arr, 0);
     }
     static boolean helper(int arr[], int index){
