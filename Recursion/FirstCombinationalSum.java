@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Submission {
+public class FirstCombinationalSum {
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         List<List<Integer>> answer = new ArrayList<>();
         sum(answer, new ArrayList<>(), candidates, target, 0);
