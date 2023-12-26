@@ -1,30 +1,39 @@
-class Solution {
-    public void perm(String p, String up, ArrayList<String> res){
-        if(up.isEmpty()){
-            res.add(p);
-            return;
-        }
-        //pick the first char from the UP String
-        char ch = up.charAt(0);
+import java.util.Arrays;
 
-        //iterate
-        for(int i = 0; i <= p.length(); i++){
-            String f = p.substring(0, i);
-            String s = p.substring(i, p.length());
+public class Solution {
 
-            perm(f+ch+s, up.substring(1), res);
-        }
-        // return res;
-    }
     public boolean checkInclusion(String s1, String s2) {
-        ArrayList<String> res = new ArrayList<>();
-        perm("", s1, res);
-
-        for(String s:  res){
-            if(s2.contains(s)){
-                return true;
-            } 
+        if (s1.length() > s2.length()) {
+            return false;
         }
-        return false;
+
+        int[] countS1 = new int[26]; // Assuming lowercase English letters
+        int[] countWindow = new int[26];
+
+        // Initialize the count arrays for the first window
+        for (int i = 0; i < s1.length(); i++) {
+            countS1[s1.charAt(i) - 'a']++;
+            countWindow[s2.charAt(i) - 'a']++;
+        }
+
+        for (int i = s1.length(); i < s2.length(); i++) {
+            if (Arrays.equals(countS1, countWindow)) {
+                return true;
+            }
+
+            // Move the window by updating counts
+            countWindow[s2.charAt(i) - 'a']++;
+            countWindow[s2.charAt(i - s1.length()) - 'a']--;
+        }
+
+        // Check for the last window after the loop
+        return Arrays.equals(countS1, countWindow);
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        String s1 = "ab";
+        String s2 = "eidbaooo";
+        System.out.println(solution.checkInclusion(s1, s2)); // Output: true
     }
 }
