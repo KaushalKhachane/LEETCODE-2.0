@@ -18,7 +18,7 @@ class Solution {
             if(arr[i] > target){
                 break;
             }
-            ds.add(arr[i]);
+            ds.add(arr[i]); 
             findCombinations(i+1,arr,target-arr[i], ans,ds);
             ds.remove(ds.size()-1);
         }
