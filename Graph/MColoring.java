@@ -12,9 +12,14 @@ class MColoring {
         List<Integer>[] G = new ArrayList[n];
         for (int i = 0; i < n; i++) {
             G[i] = new ArrayList<>();
+            
+        }
+
+        for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (graph[i][j]) {
                     G[i].add(j);
+                    G[j].add(i); // Adding the inverse edge for an undirected graph
                 }
             }
         }
