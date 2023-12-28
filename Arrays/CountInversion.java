@@ -1,7 +1,7 @@
 
 import java.util.*;
 
-public class tUf {
+public class CountInversion {
 
     private static int merge(int[] arr, int low, int mid, int high) {
         ArrayList<Integer> temp = new ArrayList<>(); // temporary array
@@ -61,7 +61,7 @@ public class tUf {
 
 
     public static void main(String[] args) {
-        int[] a = {5, 4, 3, 2, 1};
+        int[] a = {5, 3, 2, 4, 1};
         int n = 5;
         int cnt = numberOfInversions(a, n);
         System.out.println("The number of inversions are: " + cnt);
