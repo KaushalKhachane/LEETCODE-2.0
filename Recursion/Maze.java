@@ -107,8 +107,8 @@ public class Maze {
             {true, false, true},
             {true, true, true}
         };
-        // System.out.println(pathRetDig("", 3, 3));
-        // getPathRiver("", maze, 0,0);
-        System.out.println(pathRet("", 3, 3));
+        System.out.println(pathRetDig("", 3, 3));
+        getPathRiver("", maze, 0,0);
+        // System.out.println(pathRet("", 3, 3));
     }
 }

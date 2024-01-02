@@ -1,5 +1,5 @@
 public class FunctionalPalindrome {
-        static boolean pal(int l, int r, String str){
+    static boolean pal(int l, int r, String str){
         if(l >= r){
             return true;
         }
