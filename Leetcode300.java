@@ -1,33 +1,38 @@
 class Solution {
-    public int ceilIndex(int tail[], int l, int r, int x){
-        while(r > l){
-            int m = l + (r - l)/2;
-            
-            if(tail[m] >= x){
-                r = m;
-            }else{
-                l = m + 1; 
-            }
+
+    int getAns(int arr[], int n, int ind, int prev_index, int[][] dp) {
+        // Base condition
+        if (ind == n) {
+            return 0;
         }
-        return r;
+
+        if (dp[ind][prev_index + 1] != -1) {
+            return dp[ind][prev_index + 1];
+        }
+
+        int notTake = 0 + getAns(arr, n, ind + 1, prev_index, dp);
+
+        int take = 0;
+
+        if (prev_index == -1 || arr[ind] > arr[prev_index]) {
+            take = 1 + getAns(arr, n, ind + 1, ind, dp);
+        }
+
+        dp[ind][prev_index + 1] = Math.max(notTake, take);
+
+        return dp[ind][prev_index + 1];
     }
+
     public int lengthOfLIS(int[] nums) {
         int n = nums.length;
 
-        int tail[] = new int[n];
-        int len = 1;
-        tail[0] = nums[0];
-
-        for(int i = 1; i < n; i++){
-            if(nums[i] > tail[len-1]){
-                tail[len] = nums[i];
-                len++;
-            }else{
-                int idx = ceilIndex(tail, 0, len-1, nums[i]);
-                tail[idx] = nums[i];
-            }
+        int dp[][] = new int[n][n + 1];
+        
+        // Initialize dp array with -1 to mark states as not calculated yet
+        for (int row[] : dp) {
+            Arrays.fill(row, -1);
         }
 
-        return len;
+        return getAns(nums, n, 0, -1, dp);
     }
 }
