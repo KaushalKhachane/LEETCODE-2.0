@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 class TreeNode {
     int data;
     TreeNode left;
@@ -51,6 +54,37 @@ public class BinaryTree {
         return Math.max(height(root.left), height(root.right))+1;
     }
 
+    public void printNodeAtKDistance(TreeNode root, int k){
+        if(root == null){
+            return;
+        }
+        if(k == 0){
+            System.out.print(root.data + " ");
+        }else{
+            printNodeAtKDistance(root.left, k-1);
+            printNodeAtKDistance(root.right, k-1);
+        }
+    }
+
+    public void printLevelOrderTraversal(TreeNode root){
+        if(root == null){
+            return;
+        }
+
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.add(root);
+        while (queue.isEmpty() == false) {
+            TreeNode curr = queue.poll();
+            System.out.print(curr.data+ "");            
+            if(curr.left != null){
+                queue.add(curr.left);
+            }
+            if(curr.right != null){
+                queue.add(curr.right);
+            }
+        }
+    }
+
     public static void main(String[] args) {
         BinaryTree tree = new BinaryTree();
         
@@ -74,5 +108,12 @@ public class BinaryTree {
         System.out.println();
 
         System.out.println("Height = "+ tree.height(tree.root));
+
+        int k = 2;
+        System.out.println("Node at distance " + k);
+        tree.printNodeAtKDistance(tree.root, k);
+
+        System.out.println("\nBFS: ");
+        tree.printLevelOrderTraversal(tree.root);
     }
 }
