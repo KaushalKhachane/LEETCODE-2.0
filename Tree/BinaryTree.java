@@ -191,6 +191,29 @@ public class BinaryTree {
         }
     }
 
+    int getMaxWidth(TreeNode root) {
+        // Your code here
+        if(root == null) { return 0;}
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(root);
+        int res = 0;
+        while(q.isEmpty() == false){
+            int count = q.size();
+            res = Math.max(count, res);
+           
+            for(int i = 0; i < count; i++){
+                 TreeNode curr = q.poll();
+                if(curr.left != null){
+                    q.offer(curr.left);
+                }
+                if(curr.right != null){
+                    q.offer(curr.right);
+                }
+            }
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
         BinaryTree tree = new BinaryTree();
 
@@ -240,6 +263,9 @@ public class BinaryTree {
         System.out.println("\nLevel Order Traversal Line By Line: ");
 
         tree.printLevelOrderTraversalLevelByLevel2(tree.root);
+
+        System.out.println("MAX Width of Tree: ");
+        System.out.println(tree.getMaxWidth(tree.root));
 
     }
 }
