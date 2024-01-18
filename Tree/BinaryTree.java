@@ -15,6 +15,7 @@ class TreeNode {
 
 public class BinaryTree {
     TreeNode root;
+    int max_level;
 
     public BinaryTree() {
         this.root = null;
@@ -104,7 +105,22 @@ public class BinaryTree {
     }
 
     public void printLeftView(TreeNode root){
-        
+        max_level = 0;
+        leftViewUtils(root, 1); 
+    }
+
+    public void leftViewUtils(TreeNode root, int level){
+        if(root == null){
+            return;
+        }
+        // if current node is first node of it's level
+        if(max_level < level){
+            System.out.print(root.data+ "");
+            max_level = level;
+        }
+
+        leftViewUtils(root.left, level+1);
+        leftViewUtils(root.right, level+1);
     }
 
     public static void main(String[] args) {
@@ -143,5 +159,8 @@ public class BinaryTree {
 
         System.out.println("\nMax Node In Given Tree:");
         System.out.println(tree.getMax(tree.root));
+
+        System.out.println("\n Left View of tree:");
+        tree.printLeftView(tree.root);
     }
 }
