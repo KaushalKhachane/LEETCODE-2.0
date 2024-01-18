@@ -86,6 +86,54 @@ public class BinaryTree {
         }
     }
 
+    public void printLevelOrderTraversalLineByLine(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.add(root);
+        queue.add(null);
+        while (queue.size() > 1) {
+            TreeNode curr = queue.poll();
+            if(curr == null) {
+                System.out.println();
+                queue.add(null);
+                continue;
+            }
+            System.out.print(curr.data + "");
+            if (curr.left != null) {
+                queue.add(curr.left);
+            }
+            if (curr.right != null) {
+                queue.add(curr.right);
+            }
+        }
+    }
+
+    public void printLevelOrderTraversalLevelByLevel2(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.add(root);
+        while (queue.isEmpty() == false) {
+            int count = queue.size();
+            for (int i = 0; i < count; i++) {
+                TreeNode curr = queue.poll();
+                System.out.print(curr.data + "");
+                if (curr.left != null) {
+                    queue.add(curr.left);
+                }
+                if (curr.right != null) {
+                    queue.add(curr.right);
+                }
+            }
+            System.out.println();
+        }
+    }
+
     // size of binary tree
     public int getSize(TreeNode root) {
         if (root == null) {
@@ -186,5 +234,12 @@ public class BinaryTree {
         System.out.println("\n Left View of tree:");
 
         tree.printLeftIterative(tree.root);
+
+        System.out.println("\nLevel Order Traversal Line By Line: ");
+        tree.printLevelOrderTraversalLineByLine(tree.root);
+        System.out.println("\nLevel Order Traversal Line By Line: ");
+
+        tree.printLevelOrderTraversalLevelByLevel2(tree.root);
+
     }
 }
