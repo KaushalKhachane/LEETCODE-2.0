@@ -47,27 +47,27 @@ public class BinaryTree {
         }
     }
 
-    public int height(TreeNode root){
-        if(root == null){
+    public int height(TreeNode root) {
+        if (root == null) {
             return 0;
         }
-        return Math.max(height(root.left), height(root.right))+1;
+        return Math.max(height(root.left), height(root.right)) + 1;
     }
 
-    public void printNodeAtKDistance(TreeNode root, int k){
-        if(root == null){
+    public void printNodeAtKDistance(TreeNode root, int k) {
+        if (root == null) {
             return;
         }
-        if(k == 0){
+        if (k == 0) {
             System.out.print(root.data + " ");
-        }else{
-            printNodeAtKDistance(root.left, k-1);
-            printNodeAtKDistance(root.right, k-1);
+        } else {
+            printNodeAtKDistance(root.left, k - 1);
+            printNodeAtKDistance(root.right, k - 1);
         }
     }
 
-    public void printLevelOrderTraversal(TreeNode root){
-        if(root == null){
+    public void printLevelOrderTraversal(TreeNode root) {
+        if (root == null) {
             return;
         }
 
@@ -75,19 +75,41 @@ public class BinaryTree {
         queue.add(root);
         while (queue.isEmpty() == false) {
             TreeNode curr = queue.poll();
-            System.out.print(curr.data+ "");            
-            if(curr.left != null){
+            System.out.print(curr.data + "");
+            if (curr.left != null) {
                 queue.add(curr.left);
             }
-            if(curr.right != null){
+            if (curr.right != null) {
                 queue.add(curr.right);
             }
         }
     }
 
+    // size of binary tree
+    public int getSize(TreeNode root){
+        if(root == null){
+            return 0;
+        }else{
+            return 1+getSize(root.left)+getSize(root.right);    
+        }
+    }
+
+    public int getMax(TreeNode root){
+        if(root == null){
+            return Integer.MIN_VALUE;
+        }
+        else{
+            return Math.max(root.data, Math.max(getMax(root.left), getMax(root.right)));
+        }
+    }
+
+    public void printLeftView(TreeNode root){
+        
+    }
+
     public static void main(String[] args) {
         BinaryTree tree = new BinaryTree();
-        
+
         // Creating a sample binary tree
         tree.root = new TreeNode(1);
         tree.root.left = new TreeNode(2);
@@ -107,7 +129,7 @@ public class BinaryTree {
         tree.postorderTraversal(tree.root);
         System.out.println();
 
-        System.out.println("Height = "+ tree.height(tree.root));
+        System.out.println("Height = " + tree.height(tree.root));
 
         int k = 2;
         System.out.println("Node at distance " + k);
@@ -115,5 +137,11 @@ public class BinaryTree {
 
         System.out.println("\nBFS: ");
         tree.printLevelOrderTraversal(tree.root);
+        
+        System.out.println("\nSize of BST is: ");
+        System.out.println(tree.getSize(tree.root));
+
+        System.out.println("\nMax Node In Given Tree:");
+        System.out.println(tree.getMax(tree.root));
     }
 }
