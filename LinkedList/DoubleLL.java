@@ -57,6 +57,7 @@ public class DoubleLL {
         addFirst(10);
         addFirst(20);
         System.out.println(removeFirst());
+System.out.println(removeFirst());
         print();
     }
 
