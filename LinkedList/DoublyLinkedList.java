@@ -50,6 +50,20 @@ public class DoublyLinkedList {
         return out;
     }
     
+    public static void addLastNode(int data){
+        Node neNode = new Node(data);
+
+        if(tail == null){
+            head = tail = neNode;
+            size++;
+            return;
+        }
+
+        tail.next = neNode;
+        neNode.prev = tail;
+        tail = neNode;
+        size++;
+    }
 
     public static void print() {
         System.out.println("Printing List");
@@ -62,10 +76,12 @@ public class DoublyLinkedList {
     }
 
     public static void main(String[] args) {
-        addFirstNode(10);
-        addFirstNode(20);
+        // addFirstNode(10);
+        // addFirstNode(20);
+        addLastNode(30);
         print();
-        System.out.println(removeFirstNode());
+        addFirstNode(10);
+        // System.out.println(removeFirstNode());
         // System.out.println("removed -> "+removeFirstNode());
         print();
     }
