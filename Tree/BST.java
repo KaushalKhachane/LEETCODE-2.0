@@ -9,6 +9,8 @@ public class BST {
 		}
 	}
 
+	// insertion always happes at bottom 
+	// when bst empty only that time insertion happen at first
 	public static Node insert(Node root, int val) {
 		if (root == null) {
 			root = new Node(val);
@@ -24,11 +26,37 @@ public class BST {
 			// right subtree
 			root.right = insert(root.right, val);
 		}
-		return root;
+
+		//equal key present or insertion done then return 
+		return root; 
 	}
 	
-	public static void iterativeInsert(Node root, int x) {
-		
+	public static Node iterativeInsert(Node root, int x) {
+		Node parent = null;
+		Node temp = new Node(x);
+		Node current = root;
+
+		while (current != null) {
+			parent = current;
+			if(current.data > x){
+				current = current.left;
+			}else if(current.data < x){
+				current = current.right;
+			}else{
+				return root;
+			}
+		}   
+
+		if(parent == null){
+			return temp;
+		}
+		if (parent.data > x) {
+			parent.left = temp;			
+		}else{
+			parent.right = temp;
+		}
+		return root;
+
 	}
 
 	public static void inorder(Node root) {
@@ -50,7 +78,7 @@ public class BST {
 
 		// search in the left subtree
 		if (root.data > key) {
-			return search(root.left, key);
+			return search(root.left, key); 
 		} else if (root.data == key) {
 			return true;
 		}
@@ -58,6 +86,22 @@ public class BST {
 		else {
 			return search(root.right, key);
 		}
+	}
+
+	public static boolean iterativeSearch(Node root, int key){
+		if(root == null){
+			return false;
+		}
+		while (root != null) {
+			if(root.data == key){
+				return true;
+			}else if(root.data < key){
+				root = root.right;
+			}else{
+				root = root.left;
+			}
+		}
+		return false;
 	}
 
 	public static Node delete(Node root, int val) {
@@ -94,12 +138,28 @@ public class BST {
 		return root;
 	}
 
+	public static Node floorNode(Node root, int key){
+
+		Node res = null;
+		while (root != null) {
+			if(root.data == key){
+				return root;
+			}else if(root.data > key){
+				root = root.left;
+			}else{
+				res = root;
+				root = root.right;
+			}
+		}
+		return res;
+	}
+
 	public static void main(String[] args) {
 		int values[] = { 8, 5, 3, 1, 4, 6, 10, 11, 14 };
 		Node root = null;
 
 		for (int i = 0; i < values.length; i++) {
-			root = insert(root, values[i]);
+			root = iterativeInsert(root, values[i]);
 		}
 
 		inorder(root);
@@ -114,6 +174,9 @@ public class BST {
 		delete(root, 5);
 		inorder(root);
 		System.out.println();
+		System.out.println(iterativeSearch(root, 35));
+
+		System.out.println(floorNode(root,6).data);
 
 	}
 }
