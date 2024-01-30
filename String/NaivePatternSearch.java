@@ -14,16 +14,16 @@ public class NaivePatternSearch{
                 if(text.charAt(i+j) != pat.charAt(j)){
                     break;
                 }
-            }
+            } 
             if(j == m){
                 return i;
             }
         }
-        return -1;
+        return -1;  
     }
 
     public static void main(String []args){
-        String text = "ABCD";
+        String text = "ABCD"; 
         String pat = "CD";
         System.out.println(search(text, pat));
     }
