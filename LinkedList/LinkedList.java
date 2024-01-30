@@ -371,6 +371,31 @@ public class LinkedList {
         return merge(newLeft, newRight);
     }
 
+    public static int addHelper(Node temp){
+		if(temp == null){
+			return 1;
+		}
+		int carry = addHelper(temp.next);
+		temp.data += carry;
+		if(temp.data < 10){
+			return 0;
+		}
+		temp.data = 0;
+		return 1;
+	}
+
+
+	public static Node addNode(Node head) {
+		// Write your code here.
+		int carry = addHelper(head);
+		if(carry == 1){
+			Node newNode = new Node(1);
+			newNode.next = head;
+			head = newNode;
+		}
+		return head;
+	}
+
     public static void main(String[] args) {
         LinkedList list = new LinkedList();
         // head = new Node(10);
@@ -379,10 +404,10 @@ public class LinkedList {
         // head.next.next = new Node(30);
         // head.next.next.next = temp;
         // 10->40->
-        list.addLast(10);
-        list.addLast(20);
-        list.addLast(20);
-        list.addLast(10);
+        list.addLast(1);
+        list.addLast(2);
+        list.addLast(2);
+        list.addLast(1);
 
         // list.addInMiddle(1, 15);
 
@@ -411,8 +436,10 @@ public class LinkedList {
         // list.removeNthLastNode(2);
         list.printList();
         list.mergeSort(head);
+        // list.printList();
+        // list.deleteMiddle();
         list.printList();
-        list.deleteMiddle();
+        list.addNode(head);
         list.printList();
         // System.out.println(list.isCycle());
         // removeCycle();
