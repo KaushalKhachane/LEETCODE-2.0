@@ -16,7 +16,7 @@ public class LinkedList {
     public void addFirst(int data) {
         Node newNode = new Node(data);
         if (head == tail) {
-            head = tail = newNode;
+            head = tail = newNode; 
             size++;
             return;
         }
@@ -187,6 +187,8 @@ public class LinkedList {
             head = head.next;
         }
 
+        // 1->2->3->4->5
+
         Node prev = head;
         int i = 1;
         int iToFind = s - n;
@@ -243,6 +245,30 @@ public class LinkedList {
             right = right.next;
         }
         return true;
+    }
+
+    public Node deleteMiddle() {
+        // 2 pointer approach 
+        Node slow = head;
+        Node fast = head;
+        Node prev = null;
+
+        if(head == null || head.next == null){
+            return null;
+        }
+
+        while(fast != null && fast.next != null){
+            prev = slow;
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        if(prev != null){
+            prev.next = slow.next;
+        }
+
+        return head;
+        
     }
 
     public boolean isCycle() {
@@ -385,6 +411,8 @@ public class LinkedList {
         // list.removeNthLastNode(2);
         list.printList();
         list.mergeSort(head);
+        list.printList();
+        list.deleteMiddle();
         list.printList();
         // System.out.println(list.isCycle());
         // removeCycle();
