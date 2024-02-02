@@ -57,7 +57,7 @@ class Solution {
         List<List<Integer>> res = new ArrayList<>();
         for (Map.Entry<Integer, List<Pair>> entry : mp.entrySet()) {
             List<Pair> list = entry.getValue();
-            Collections.sort(list, new Comparator<Pair>() {
+            Collections.sort(list, new Comparator<Pair>() {  // this is for sort the inner list as TreeMap only sort on the keys, but the inner list may remain un sorted
                 @Override
                 public int compare(Pair a, Pair b) {
                     return a.root.val - b.root.val;
