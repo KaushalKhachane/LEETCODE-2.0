@@ -16,7 +16,7 @@ public class LinkedList {
     public void addFirst(int data) {
         Node newNode = new Node(data);
         if (head == tail) {
-            head = tail = newNode; 
+            head = tail = newNode;
             size++;
             return;
         }
@@ -203,6 +203,67 @@ public class LinkedList {
 
     }
 
+    // utils for reverse in group of size k
+    // reverseList()
+    public Node getKthNode(Node temp, int k) {
+        k -= 1;
+        while (temp != null && k > 0) {
+            temp = temp.next;
+        }
+        return temp;
+    }
+
+    public void reverseGruopK(int k) {
+        head = reverseGroupKHelper(head, k);
+    }
+
+    private Node reverseGroupKHelper(Node start, int k) {
+        Node temp = start;
+        Node prevLast = null;
+
+        while (temp != null) {
+            Node kthNode = getKthNode(temp, k);
+
+            if (kthNode == null) {
+                if (prevLast != null) {
+                    prevLast.next = reverseList2(temp);
+                } else {
+                    head = reverseList2(temp);
+                }
+                break;
+            }
+
+            Node nextNode = kthNode.next;
+            kthNode.next = null;
+
+            if (prevLast == null) {
+                head = reverseList2(temp);
+            } else {
+                prevLast.next = reverseList2(temp);
+            }
+
+            prevLast = temp;
+            temp = nextNode;
+        }
+
+        return head;
+    }
+
+    private Node reverseList2(Node head) {
+        Node prev = null;
+        Node curr = head;
+        Node next;
+
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        return prev;
+    }
+
     public Node findMid(Node head) {
         Node slow = head;
         Node fast = head;
@@ -248,27 +309,27 @@ public class LinkedList {
     }
 
     public Node deleteMiddle() {
-        // 2 pointer approach 
+        // 2 pointer approach
         Node slow = head;
         Node fast = head;
         Node prev = null;
 
-        if(head == null || head.next == null){
+        if (head == null || head.next == null) {
             return null;
         }
 
-        while(fast != null && fast.next != null){
+        while (fast != null && fast.next != null) {
             prev = slow;
             slow = slow.next;
             fast = fast.next.next;
         }
 
-        if(prev != null){
+        if (prev != null) {
             prev.next = slow.next;
         }
 
         return head;
-        
+
     }
 
     public boolean isCycle() {
@@ -317,7 +378,7 @@ public class LinkedList {
         Node slow = head;
         Node fast = head.next;
 
-        while (fast != null     && fast.next != null) {
+        while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
@@ -371,30 +432,29 @@ public class LinkedList {
         return merge(newLeft, newRight);
     }
 
-    public static int addHelper(Node temp){
-		if(temp == null){
-			return 1;
-		}
-		int carry = addHelper(temp.next);
-		temp.data += carry;
-		if(temp.data < 10){
-			return 0;
-		}
-		temp.data = 0;
-		return 1;
-	}
+    public static int addHelper(Node temp) {
+        if (temp == null) {
+            return 1;
+        }
+        int carry = addHelper(temp.next);
+        temp.data += carry;
+        if (temp.data < 10) {
+            return 0;
+        }
+        temp.data = 0;
+        return 1;
+    }
 
-
-	public static Node addNode(Node head) {
-		// Write your code here.
-		int carry = addHelper(head);
-		if(carry == 1){
-			Node newNode = new Node(1);
-			newNode.next = head;
-			head = newNode;
-		}
-		return head;
-	}
+    public static Node addNode(Node head) {
+        // Write your code here.
+        int carry = addHelper(head);
+        if (carry == 1) {
+            Node newNode = new Node(1);
+            newNode.next = head;
+            head = newNode;
+        }
+        return head;
+    }
 
     public static void main(String[] args) {
         LinkedList list = new LinkedList();
@@ -406,8 +466,8 @@ public class LinkedList {
         // 10->40->
         list.addLast(1);
         list.addLast(2);
-        list.addLast(2);
-        list.addLast(1);
+        list.addLast(3);
+        list.addLast(4);
 
         // list.addInMiddle(1, 15);
 
@@ -434,17 +494,19 @@ public class LinkedList {
         // list.printList();
         // list.removeNthLastNode(3);
         // list.removeNthLastNode(2);
-        list.printList();
-        list.mergeSort(head);
         // list.printList();
-        // list.deleteMiddle();
-        list.printList();
-        list.addNode(head);
+        // list.mergeSort(head);
+        // // list.printList();
+        // // list.deleteMiddle();
+        // list.printList();
+        // list.addNode(head);
         list.printList();
         // System.out.println(list.isCycle());
         // removeCycle();
         // System.out.println(list.isCycle());
-        
+
+        list.reverseGruopK(3);
+        list.printList();
 
     }
 
