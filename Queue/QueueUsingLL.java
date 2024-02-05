@@ -1,5 +1,3 @@
-import org.w3c.dom.Node;
-
 public class QueueUsingLL {
     static class QueueNode {
         int data;
@@ -68,6 +66,7 @@ public class QueueUsingLL {
     public static void main(String[] args) {
         Queue q = new Queue();
         q.enQueue(10);
+        q.enQueue(20);
         q.deQueue();
         q.dispQueue();
     }
