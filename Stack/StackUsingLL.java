@@ -40,10 +40,10 @@ class StackUsingLinkedlist {
 	{
 		Node temp = new Node();
 
-		if (temp == null) {
-			System.out.print("\nHeap Overflow");
-			return;
-		}
+		// if (temp == null) {
+		// 	System.out.print("\nHeap Overflow");
+		// 	return;
+		// }
 
 		temp.data = x;
 
