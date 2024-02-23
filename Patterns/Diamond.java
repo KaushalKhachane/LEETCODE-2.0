@@ -10,7 +10,7 @@ public class Diamond {
             System.out.println();
         }
     }
-
+//push
     public static void pattern28(int n){
         for(int i = 0; i < 2*n; i++){
             
