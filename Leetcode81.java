@@ -11,6 +11,13 @@ class Solution {
                 return true;
             }
 
+            //Edge case:
+            if (nums[low] == nums[mid] && nums[mid] == nums[high]) {
+                low = low + 1;
+                high = high - 1;
+                continue;
+            }
+
             //if left part is sorted:
             if (nums[low] <= nums[mid]) {
                 if (nums[low] <= k && k <= nums[mid]) {
