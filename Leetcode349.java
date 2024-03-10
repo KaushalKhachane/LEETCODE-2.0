@@ -1,11 +1,10 @@
 class Solution {
     public int[] intersection(int[] nums1, int[] nums2) {
         HashSet<Integer> s = new HashSet<>();
-
         for(int e: nums1){
             s.add(e);
         }
-        
+
         ArrayList<Integer> res= new ArrayList<>();
 
         for(int ele: nums2){
