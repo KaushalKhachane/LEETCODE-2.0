@@ -6,6 +6,7 @@ class Solution {
         //     map.put(nums[i], map.getOrDefault(nums[i],0)+1);
         // }
         List<Integer> res= new ArrayList<>();
+        
         // for(Map.Entry<Integer, Integer> ele: map.entrySet()){
         //     if(ele.getValue() > 1){
         //         res.add(ele.getKey());
