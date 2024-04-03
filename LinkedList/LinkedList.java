@@ -264,6 +264,7 @@ public class LinkedList {
         return prev;
     }
 
+
     public Node findMid(Node head) {
         Node slow = head;
         Node fast = head;
@@ -330,6 +331,28 @@ public class LinkedList {
 
         return head;
 
+    }
+
+    public Node remoeMiddle(){
+        Node slow = head;
+        Node fast = head;
+        Node prev = null;
+
+        if(head == null || head.next == null){
+            return null;
+        }
+        
+        while (fast != null && fast.next != null) { 
+            prev = slow;
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        
+        if(prev != null){
+            prev.next = slow.next;
+        }
+
+        return head;
     }
 
     public boolean isCycle() {
@@ -504,8 +527,8 @@ public class LinkedList {
         // System.out.println(list.isCycle());
         // removeCycle();
         // System.out.println(list.isCycle());
-
-        list.reverseGruopK(3);
+        list.remoeMiddle();
+        // list.reverseGruopK(3);
         list.printList();
 
     }
