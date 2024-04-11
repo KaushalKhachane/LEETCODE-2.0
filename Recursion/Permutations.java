@@ -39,6 +39,6 @@ public class Permutations {
         // ArrayList<String> res = getPermutations("", "abc");
         // System.out.println(res);
 
-        System.out.println(getPermutationsCount("", "abc"));
+        System.out.println(getPermutations("", "abc"));
     }
 }
