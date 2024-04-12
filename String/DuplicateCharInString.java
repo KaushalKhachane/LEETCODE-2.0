@@ -19,6 +19,6 @@ public class DuplicateCharInString {
     }
 
     public static void main(String[] args) {
-        duplicateCharInString("Kaushal");
+        duplicateCharInString("aaaaaaa");
     }
 }
