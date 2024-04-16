@@ -17,7 +17,7 @@ public class StockSpanUsingStack
             
             int i = 0;
             for(i = 0; i < n; i++)
-              a[i] = sc.nextInt();
+              a[i] = sc.nextInt();x
               
             int[] s = new Solution().calculateSpan(a, n);
             
@@ -54,7 +54,7 @@ class Solution
                 s.pop();
             }
             
-            span[i] = s.empty() ? i+1 : i - s.peek();
+            span[i] = s.empty() ? i+1 : i - s.peek();   
             s.push(i);
         }
         
