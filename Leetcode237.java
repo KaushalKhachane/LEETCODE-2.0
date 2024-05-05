@@ -13,7 +13,7 @@ class Solution {
         if(node.next ==  null) {
             node = null;
         }
-        simply traverse (not traverse actually) right of given node
+        // simply traverse (not traverse actually) right of given node
         node.val = node.next.val;
         node.next = node.next.next;
     }
