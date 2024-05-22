@@ -29,5 +29,5 @@ class Solution {
         List<String> temp =  new ArrayList<>();
         partitionHelper(0, s, temp, res);
         return res;
-    }
+    } 
 }
