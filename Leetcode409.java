@@ -20,4 +20,4 @@ class Solution {
         if(isOddLength) result++;
         return result;
     }
-}
+}  
