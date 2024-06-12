@@ -8,26 +8,23 @@ class Solution {
         while(m <= h){
             switch(nums[m]){
                 case 0:
-                    // if the element is 0
                     temp = nums[l];
                     nums[l] = nums[m];
                     nums[m] = temp;
-                    l++;
                     m++;
+                    l++;
                     break;
                 case 1:
-                    // if the element is 1
                     m++;
                     break;
                 case 2:
-                    // if the element is 2
-                    temp = nums[m];
-                    nums[m] = nums[h];
-                    nums[h] = temp;
+                    temp = nums[h];
+                    nums[h] = nums[m];
+                    nums[m] = temp;
                     h--;
                     break;
+                    
             }
-        }
-
+        } 
     }
-}
+}  
